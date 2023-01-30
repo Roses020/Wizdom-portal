@@ -1,0 +1,67 @@
+.logout-btn {
+	background-color: rgb(91, 231, 231);
+    border-radius: 999px;
+	width: 150px;
+	height: 40px;
+	margin: 0px;
+	font-size: 20px;
+	box-shadow: 0 8px 10px 0 rgba(15, 3, 3, 0.2);
+	margin-left: 10px;
+}
+.homeBtn {
+	background-color: rgb(91, 231, 231);
+    border-radius: 999px;
+	width: 150px;
+	height: 40px;
+	font-size: 20px;
+	box-shadow: 0 8px 10px 0 rgba(15, 3, 3, 0.2);
+	margin-left: 10px;
+}
+
+.profileBtn {
+	background-color: rgb(91, 231, 231);
+    border-radius: 999px;
+	width: 150px;
+	height: 40px;
+	font-size: 20px;
+	box-shadow: 0 8px 10px 0 rgba(15, 3, 3, 0.2);
+	margin-left: 10px;
+	
+}
+
+.wizdom_portal_banner {
+	background-color: rgb(129, 243, 243);
+	font-size: 2rem; /* 2 times the font-size of the root element */
+	font-size: 7vw;
+	text-align: center;
+	margin: 0px;
+	border-bottom: 5px solid black; 
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	box-shadow: 0 10px 10px 0 rgba(15, 3, 3, 0.2);
+	font-family:'Times New Roman', Times, serif
+	
+	
+}
+
+.wizdom_portal_welcome {
+	color: rgb(107, 206, 206);
+	font-size: 2vw;
+	font-size: 2rem;
+	text-align: center;
+	margin: 6px 0px 0px 0px;
+	font-family:'Times New Roman', Times, serif
+}
+
+.Wizard_Quote {
+	font-size: xx-large;
+	color: rgb(8, 116, 116);
+	margin: 0px;
+	margin-top: 15px;
+	font-family: cursive;
+}
+
+.nav{
+	display: inline-block;
+	float: right;
+}

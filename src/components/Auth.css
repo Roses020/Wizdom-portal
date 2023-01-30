@@ -1,0 +1,39 @@
+.form-input {
+    width: 300px;
+    height: 50px;
+    background-color: rgb(238, 246, 248);
+    border: 5px solid rgb(153, 138, 191);
+    border-radius: 999px; /* round the corners to create an oval */
+    padding: 5px 10px;
+    box-shadow: 0 6px 10px 0 rgba(15, 3, 3, 0.2);
+    font-size: 30px;
+    font-family:cursive
+}
+
+.form_div {
+    height: 300px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    margin-top: 30px;
+    border: 5px solid rgb(153, 138, 191);
+    
+
+
+}
+
+.form_container{
+    display: flex;
+    justify-content: center;
+    
+}
+.form-btn {
+    width: 200x;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 999px;
+    border: 5px solid rgb(153, 138, 191);
+    font-family:cursive
+}

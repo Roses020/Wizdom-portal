@@ -1,0 +1,17 @@
+.video_card {
+    height: 400px;
+    width: 430px;
+  background-color: rgb(235, 243, 243);
+    box-shadow: 0 10px 20px 0 rgba(15, 3, 3, 0.2);
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 10px;
+}
+.video_button{
+    border-radius: 999px;
+    width: 200px;
+    height: 30px;
+    
+}
