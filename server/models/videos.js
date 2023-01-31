@@ -9,6 +9,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true
     },
-    videotype: DataTypes.STRING,
+    youtubevideoId: DataTypes.STRING,
+    savedVideoListId: DataTypes.INTEGER,
    })
 }

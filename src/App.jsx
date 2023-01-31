@@ -14,7 +14,7 @@ import AuthContext from "./store/AuthContext";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
-  console.log(authCtx.token)
+  //console.log(authCtx.token)
   return (
     <div className="app">
       <Header />

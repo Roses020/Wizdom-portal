@@ -9,6 +9,7 @@
     font-size: 30px;
     font-family:cursive
     
+    
 }
 .profile_Div {
     justify-content: center;
@@ -30,8 +31,8 @@
     background-color: rgb(221, 191, 226);
     border-radius: 999px;
     box-shadow: 0 6px 10px 0 rgba(15, 3, 3, 0.2);
-    width: 80px;
+    width: 150px;
     height: 50px;
-    margin-left: 5px;
+    /* margin-left: 200px; */
     font-size: 20px;
 }

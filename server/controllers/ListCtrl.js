@@ -2,7 +2,7 @@ const {User} = require('../models/user');
 const {   SavedVideoList } = require('../models/savedVideoList')
 
 module.exports = {
-    AddList: async (req, res) => {
+    addList: async (req, res) => {
         try {
             const { userId, list } = req.body
             await SavedVideoList.create({ listName:list, userId}) 
@@ -15,7 +15,7 @@ module.exports = {
             res.sendStatus(400)
           }
         },
-        getLists: async (req, res) => {
+      getLists: async (req, res) => {
          try {
           const { userId } = req.params
           const lists =  await SavedVideoList.findAll({where: { userId }})

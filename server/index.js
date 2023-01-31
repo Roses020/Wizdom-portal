@@ -13,7 +13,9 @@ const { sequelize } = require('./util/database')
 const { login, register } = require('./controllers/authCtrl')
 const { isAuthenticated } = require('./middleware/isAuthenticated')
 const { getVideos } = require('./controllers/VideoCtrl')
-const { AddList, getLists } = require("./controllers/ListCtrl")
+const { addList, getLists } = require("./controllers/ListCtrl")
+const { addVideoToList } = require('./controllers/VideoCtrl')
+const { getListVideos } = require("./controllers/VideoCtrl")
 // const { seedDatabase } = require('./util/seed')
 
 
@@ -24,8 +26,12 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
+app.get("/Videos/:ListId", getListVideos)
+
 app.get("/Lists/:userId", getLists)
-app.post("/AddList", AddList)
+app.post("/AddList", addList)
+
+app.post("/saveVideo", addVideoToList)
 
 app.post('/register', register)
 app.post('/login', login)
@@ -38,7 +44,7 @@ SavedVideoList.hasMany(Video)
 Video.belongsTo(SavedVideoList)
 
 
-// sequelize.sync({force: true}).then(() => seedDatabase())
+// sequelize.sync({force: true}).then(() => seedDatabase()) // seed function allows us to set default data in the database!
 sequelize.sync()
 .then(() => {
 app.listen(SERVER_PORT, ()  => console.log(`take us to port ${SERVER_PORT}!`))

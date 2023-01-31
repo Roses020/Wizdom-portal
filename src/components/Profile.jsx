@@ -3,36 +3,48 @@ import "./Profile.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 // import AuthContext from "../store/AuthContext";
+import VideoCardContainer from "./VideoCardContainer";
 
 const Profile = () => {
   const userId = JSON.parse(localStorage.getItem("userId"));
+  const [Videos, setVideos] = useState([]);
   const [Lists, setLists] = useState([]);
   const [List, setList] = useState("");
+  
+  const getVideosFromListId = (listId) => {
+    axios.get('/Videos/' + listId)
+    .then((res) => {
+      console.log(res.data)
+      setVideos(res.data)
+  
+    })
+  }
+  const handleChange = (e) => {
+    const listId = e.target.value;
+    getVideosFromListId(listId)
+  }
 
   const AddList = (Add) => {
     const body = {
       userId: userId,
-      list: List,
+      list: Add,
     };
     axios.post("/AddList", body).then((res) => {
-      console.log(res.data);
-      //   setList(res.data.items);
+      setList(res.data.items);
     });
   };
-  
+
    useEffect(() => {
     axios.get('/Lists/' + userId)
     .then(res => {
        
-      console.log(res.data)
       setLists(res.data)
-        
     })
     .catch(err => {
         console.log(err)
     })
 }, [])
-
+  
   return (
     <div className="profile_Div">
       <input
@@ -46,11 +58,12 @@ const Profile = () => {
       <button className="Add_btn" onClick={() => AddList(List)}>
         Add
       </button>
-      <select className="dropdown" name="List" id="List">
+      <select onChange={(e) => handleChange(e)} className="dropdown" name="List" id="List">
         { Lists.length > 0 ? Lists.map((list) => {
-            return    <option value={list.listName}>{list.listName}</option>
+            return <option key={list.listName} value={list.id}>{list.listName}</option>
         }): ''} 
       </select>
+      <VideoCardContainer Videos={Videos} Lists={Lists}/>
     </div>
   );
 };

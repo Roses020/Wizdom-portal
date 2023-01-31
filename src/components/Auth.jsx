@@ -18,8 +18,8 @@ const Auth = () => {
         }
         axios.post(register ? '/register' : '/login', body)
         .then(({data})=> {
-            console.log('AFTER AUTH', data)
-            console.log(authCtx)
+            //console.log('AFTER AUTH', data)
+            //console.log(authCtx)
             authCtx.login(data.token, data.exp, data.userId)
         })
         .catch(function (error) {
@@ -28,7 +28,7 @@ const Auth = () => {
             console.log(error);
           });
     
-           console.log('submitHandler called')
+           //console.log('submitHandler called')
        }
     
        return (
@@ -49,6 +49,7 @@ const Auth = () => {
                        className='form-input'/>
                    <button className='form-btn'>
                        {register ? 'Sign Up' : 'Login'}
+               <div className='profilewizardPic'> <img alt="headerpic" src="https://t3.ftcdn.net/jpg/02/47/26/12/360_F_247261221_eGirP3pgZpNU8RY3yRG1qEslnRkNGKCk.jpg"width="600"></img></div>
                    </button>
                </form >
                <button  className='form-btn' onClick={e => setRegister(register ? false : true)}> Need to {register ? 'Login' : 'Sign Up'}?</button>
