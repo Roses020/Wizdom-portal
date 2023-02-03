@@ -16,6 +16,7 @@ const { getVideos } = require('./controllers/VideoCtrl')
 const { addList, getLists } = require("./controllers/ListCtrl")
 const { addVideoToList } = require('./controllers/VideoCtrl')
 const { getListVideos } = require("./controllers/VideoCtrl")
+const { deleteVideoFromList} = require("./controllers/VideoCtrl")
 // const { seedDatabase } = require('./util/seed')
 
 
@@ -25,6 +26,8 @@ const app = express()
  
 app.use(express.json())
 app.use(cors())
+
+app.delete("/video/:listId/:videoId", deleteVideoFromList)
 
 app.get("/Videos/:ListId", getListVideos)
 

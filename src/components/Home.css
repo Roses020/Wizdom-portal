@@ -6,15 +6,17 @@
     border-radius: 999px; /* round the corners to create an oval */
     padding: 5px 10px;
     box-shadow: 0 6px 10px 0 rgba(15, 3, 3, 0.2);
-    font-size: 25px;
+    font-size: 30px;
     font-family: cursive;
 }
 
 .search_button {
-    background-color: rgb(91, 231, 231);
+    background-color: rgb(187, 224, 224);
     border-radius: 999px;
     box-shadow: 0 6px 10px 0 rgba(15, 3, 3, 0.2);
     width: 80px;
+    font-family: cursive;
+    font-size: 20px;
 }
 
 .search_div {

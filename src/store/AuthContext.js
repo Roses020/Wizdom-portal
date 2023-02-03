@@ -6,6 +6,8 @@ const AuthContext = createContext({
     token: '',
     login: () => {},
     logout: () => {},
+    userVideos: null,
+    saveUserVideos: () => {},
     userId: null
 
 })
@@ -21,18 +23,21 @@ const calculateRemainingTime = (exp) => {
 const getLocalData = () => {
     const storedToken = localStorage.getItem('token')
     const storedExp = localStorage.getItem('exp')
+    const storedID = localStorage.getItem('userId')
 
     const remainingTime = calculateRemainingTime(storedExp)
 
     if (remainingTime <= 1000 * 60 * 30) {
         localStorage.removeItem('token')
         localStorage.removeItem('exp')
+        localStorage.removeItem('userId')
         return null
     }
 
      return {
         token: storedToken,
         duration: remainingTime,
+        userId: storedID
      }
 
 }
@@ -42,12 +47,16 @@ export const AuthContextProvider = (props) => {
     const localData = getLocalData()
 
     let initialToken
+    let initialId
     if (localData) {
         initialToken = localData.token
+        initialId = localData.userId
     }
 
-    const [token, setToken] = useState(initialToken)
-    const [userId, setUserId] = useState(null)
+    const [token, setToken,] = useState(initialToken)
+    const [userId, setUserId] = useState(initialId)
+    const [userVideos, setUserVideos] = useState(null)
+
 
     const logout = () => {
         setToken(null)
@@ -70,12 +79,17 @@ export const AuthContextProvider = (props) => {
         const remainingTime = calculateRemainingTime(expiration)
         logoutTimer = setTimeout(logout, remainingTime)
     }
+    const saveUserVideos = ( searchResults ) => {
+        setUserVideos(searchResults)
+    }
    //console.log(login)
    const contextValue = {
     token,
     login,
     logout,
-    userId
+    userVideos,
+    saveUserVideos, 
+    userId:+userId
    }
 
    return (

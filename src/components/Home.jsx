@@ -1,31 +1,38 @@
 import axios from "axios";
-import { React } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./Home.css";
 import VideoCardContainer from "./VideoCardContainer";
 
+import AuthContext from "../store/AuthContext";
 
 const Home = () => {
   const [Videos, setVideos] = useState([]);
   const [Search, setSearch] = useState("");
   const [Lists, setLists] = useState([]);
 
-  const userId = JSON.parse(localStorage.getItem("userId"));
+  
+  const IsProfilePage = false 
+
+ const authctx = useContext(AuthContext)
  
   const SearchForVideos = (search) => {
     axios.get("/GetVideos/" + search).then((res) => {
-      console.log(res.data);
       setVideos(res.data.items);
+      authctx.saveUserVideos(res.data.items)
     });
   };
 
   useEffect(() => {
-    axios.get('/Lists/' + userId)
+    if(authctx.userVideos){
+      setVideos(authctx.userVideos)
+    }
+      
+    axios.get('/Lists/' + authctx.userId)
     .then(res => {
        
      // console.log(res.data)
       setLists(res.data)
-        
+
     })
     .catch(err => {
         console.log(err)
@@ -49,7 +56,7 @@ const Home = () => {
       { Videos.length > 0 ? "" : <div className="image">
           <div> <img alt="headerpic" src="https://cdn.pixabay.com/photo/2016/06/13/14/57/wizard-1454385__340.png"width="600"></img></div>
           </div>}
-      <VideoCardContainer Videos={ Videos } Lists={ Lists }/>
+      <VideoCardContainer  CurrentList={''} Videos={ Videos } Lists={ Lists } IsProfilePage={ IsProfilePage }/>
         </div>
     </div>
   );

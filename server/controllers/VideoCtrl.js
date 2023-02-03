@@ -51,5 +51,13 @@ module.exports = {
                     res.sendStatus(400)
                     console.log(req.params)
                   }
+               
+            },
+           
+            deleteVideoFromList: async (req, res) => {
+               const { videoId, listId } = req.params
+               //console.log(req.params)
+               await Video.destroy({where: {youtubevideoId: videoId, savedVideoListId: listId}})
+            res.sendStatus(200)
             }
     }

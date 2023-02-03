@@ -18,6 +18,8 @@ const Auth = () => {
         }
         axios.post(register ? '/register' : '/login', body)
         .then(({data})=> {
+            
+            alert(`Welcome ${username} To Wizdom Portal!`);
             //console.log('AFTER AUTH', data)
             //console.log(authCtx)
             authCtx.login(data.token, data.exp, data.userId)
