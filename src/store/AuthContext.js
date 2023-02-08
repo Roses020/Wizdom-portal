@@ -61,6 +61,7 @@ export const AuthContextProvider = (props) => {
     const logout = () => {
         setToken(null)
         setUserId(null)
+        localStorage.removeItem('username')
         localStorage.removeItem('token')
         localStorage.removeItem('userId')
         localStorage.removeItem('expirationTime')
@@ -69,10 +70,11 @@ export const AuthContextProvider = (props) => {
         }
     }
 
-    const login = (tok, expiration, user) => {
+    const login = (tok, expiration, user, username) => {
         //console.log(tok, expiration, user)
         setToken(tok)
         setUserId(user)
+        localStorage.setItem('username',username)
         localStorage.setItem('token',tok)
         localStorage.setItem('userId', user)
         localStorage.setItem('exp', expiration)

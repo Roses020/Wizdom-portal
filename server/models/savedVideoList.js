@@ -10,8 +10,6 @@ module.exports = {
         primaryKey: true
     },
    listName: DataTypes.STRING,
-   userId: {type: DataTypes.INTEGER,
-    
-             }
+   userId: DataTypes.INTEGER
    })
 }

@@ -16,7 +16,8 @@ const { getVideos } = require('./controllers/VideoCtrl')
 const { addList, getLists } = require("./controllers/ListCtrl")
 const { addVideoToList } = require('./controllers/VideoCtrl')
 const { getListVideos } = require("./controllers/VideoCtrl")
-const { deleteVideoFromList} = require("./controllers/VideoCtrl")
+const { deleteVideoFromList } = require("./controllers/VideoCtrl")
+const { getVideosNext } = require("./controllers/VideoCtrl")
 // const { seedDatabase } = require('./util/seed')
 
 
@@ -26,6 +27,8 @@ const app = express()
  
 app.use(express.json())
 app.use(cors())
+
+// app.use(express.static(path.resolve(__dirname,"../build")));
 
 app.delete("/video/:listId/:videoId", deleteVideoFromList)
 
@@ -41,10 +44,17 @@ app.post('/login', login)
 
 app.get('/GetVideos/:Search', getVideos)
 
+app.get("/GetNextVideos/:search/:nextPage", getVideosNext)
+
 User.hasMany(SavedVideoList)
 SavedVideoList.belongsTo(User)
 SavedVideoList.hasMany(Video)
 Video.belongsTo(SavedVideoList)
+
+
+// app.get('/*', function (req, res){
+//     res.sendFile(path.join(__dirname, '../build', 'index.html'));
+// });
 
 
 // sequelize.sync({force: true}).then(() => seedDatabase()) // seed function allows us to set default data in the database!

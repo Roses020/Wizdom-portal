@@ -22,7 +22,21 @@ module.exports = {
           res.status(200).send(lists)
          }
          catch(err){
-
+          
          }
+        },
+        DeleteList: async (req, res) => {
+          try {
+            const { listId } = req.params
+            await SavedVideoList.destroy({where: {id: listId}})
+            res.sendStatus(200)
+          }
+        
+        catch (error) {
+          console.log('ERROR in getVideo')
+          console.log(error)
+          res.sendStatus(400)
+          console.log(req.params)
         }
+      }
 }

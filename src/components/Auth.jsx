@@ -3,11 +3,13 @@ import {useContext, useState} from 'react'
 import AuthContext from '../store/AuthContext'
 import "./Auth.css"
 
+
 const Auth = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [register, setRegister] = useState(true)
     const authCtx = useContext(AuthContext)
+   
     // console.log(authCtx)
     const submitHandler = e => {
         e.preventDefault()
@@ -20,9 +22,10 @@ const Auth = () => {
         .then(({data})=> {
             
             alert(`Welcome ${username} To Wizdom Portal!`);
+         
             //console.log('AFTER AUTH', data)
             //console.log(authCtx)
-            authCtx.login(data.token, data.exp, data.userId)
+            authCtx.login(data.token, data.exp, data.userId, data.username)
         })
         .catch(function (error) {
             setPassword('')
@@ -54,7 +57,7 @@ const Auth = () => {
                <div className='profilewizardPic'> <img alt="headerpic" src="https://t3.ftcdn.net/jpg/02/47/26/12/360_F_247261221_eGirP3pgZpNU8RY3yRG1qEslnRkNGKCk.jpg"width="600"></img></div>
                    </button>
                </form >
-               <button  className='form-btn' onClick={e => setRegister(register ? false : true)}> Need to {register ? 'Login' : 'Sign Up'}?</button>
+             <button  className='form-btn' onClick={e => setRegister(register ? false : true)}> Need to {register ? 'Login' : 'Sign Up'}?</button>
               </div>
            </main>
        )

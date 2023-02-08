@@ -59,5 +59,19 @@ module.exports = {
                //console.log(req.params)
                await Video.destroy({where: {youtubevideoId: videoId, savedVideoListId: listId}})
             res.sendStatus(200)
-            }
+            },
+            
+            getVideosNext: (req, response) => {
+                const { search, nextPage } = req.params
+                try {
+            axios.get(`https://www.googleapis.com/youtube/v3/search?key=${APIKEY}&q=${search}&pageToken=${nextPage}&maxResults=12`)
+                    .then((res) => {
+                        response.status(200).send(res.data);
+                    });
+                } catch (error) {
+                    console.log('error in the getVideosNext function');
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+            },
     }

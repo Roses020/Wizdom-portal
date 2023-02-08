@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import VideoCardContainer from "./VideoCardContainer";
 
+
 const Profile = () => {
   const userId = JSON.parse(localStorage.getItem("userId"));
   const [Videos, setVideos] = useState([]);
@@ -32,6 +33,7 @@ const Profile = () => {
     };
     axios.post("/AddList", body).then((res) => {
       alert(`The List: ${Add} Was Created!`);
+     
       setList(res.data.items);
     });
   };
@@ -46,8 +48,6 @@ const Profile = () => {
       console.log(err)
     })
 }, [])
-
-
 
   return (
     <div className="profile_Div">
@@ -68,6 +68,9 @@ const Profile = () => {
         }): ''} 
       </select>
       <VideoCardContainer getVideosFromListId={getVideosFromListId} CurrentList={CurrentList} Videos={Videos} Lists={Lists} IsProfilePage={ IsProfilePage }/>
+      { Videos.length > 0 ? "" : <div className="ProfilePic"> <img alt="profilePic" src="https://img.freepik.com/free-vector/simple-sketch-old-wizard_1308-86372.jpg"width="600"></img>
+      <h2>Hello!,Add A List!</h2>
+      </div>}
     </div>
   );
 };
